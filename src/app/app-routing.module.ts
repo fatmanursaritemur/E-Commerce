@@ -1,8 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductComponent } from 'src/app/product/product.component';
+import { ProductAddForms1Component } from 'src/app/product/product-add-forms1/product-add-forms1.component';
+import { ProductAddForms2Component } from 'src/app/product/product-add-forms2/product-add-forms2.component';
+import { LoginComponent } from 'src/app/login/login.component';
+import { LoginGuard } from 'src/app/login/login.guard';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:'products', component: ProductComponent},
+  {path:'product-add-1', component: ProductAddForms1Component, canActivate:[LoginGuard]},
+  {path:'product-add-2', component: ProductAddForms2Component},
+  {path:'', redirectTo: 'products',pathMatch:'full'},
+  {path:'products/category/:categoryId', component:ProductComponent},
+  {path:'login', component: LoginComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
